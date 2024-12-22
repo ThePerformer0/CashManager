@@ -1,0 +1,42 @@
+{% extends '../base/base.html' %}
+{% block title %}CashManager - Justificatif{% endblock %}
+
+{% block template %}
+{% load humanize %}
+<div class="main">
+    <div class="head-form">
+        <h1>Ajouter un Justificatif</h1>
+    </div>
+    <div class="form-justificatif">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div>
+                <label for="retrait_id" class="form-label">Choisir un retrait</label>
+                <select name="retrait_id" id="retrait_id" class="form-select" required>
+                    <option value="">-- Sélectionnez un retrait --</option>
+                    {% for retrait in retraits %}
+                        <option value="{{ retrait.id }}">{{ retrait.numero }} - {{ retrait.beneficiaire }} - {{ retrait.date }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            {{ form.description.label_tag }}
+            {{ form.description }}<br>
+    
+            {{ form.fichier.label_tag }}
+            {{ form.fichier }}<br>
+    
+            <div class="btn">
+                <button type="reset" class="btn-cancel">Annuler</button>
+                <button type="submit"class="btn-submit">Ajouter</button>
+            </div>
+
+            <div class="link-back">
+                <a href="{% url 'cashmanager:index' %}" class="btn btn-secondary">Retour</a>
+            </div>
+        </form>
+    
+    </div>
+</div>
+{% endblock %}

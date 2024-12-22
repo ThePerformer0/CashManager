@@ -1,0 +1,31 @@
+{% extends '../base/base.html' %}
+{% block title %}CashManager - Retrait{% endblock %}
+
+{% block template %}
+{% load humanize %}
+
+<div class="main">
+  <div class="head-form">
+    <h1>Ajouter un employé</h1>
+  </div>
+  <div class="form-transactions">
+    <form method="post">
+      {% csrf_token %}
+      <label for="nom">Nom de l'employé :</label>
+      <input type="text" name="nom" id="nom" required>
+
+      <label for="email">Email :</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="poste">Son poste :</label>
+      <input type="text" name="poste" id="poste">
+
+      <div class="buttons">
+        <button type="reset" class="cancel">Annuler</button>
+        <button type="submit">Ajouter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

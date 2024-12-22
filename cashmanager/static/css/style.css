@@ -1,0 +1,560 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+
+.topbar {
+    position: fixed;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+    width: 100%;
+    height: 60px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+
+.logo h2 {
+    color: #29ac6c;
+}
+
+.user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ========== SIDEBAR ========== */
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    width: 260px;
+    height: calc(100% - 60px);
+    background: #29ac6c;
+    overflow-x: hidden;
+}
+
+.sidebar ul {
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    width: 100%;
+    list-style: none;
+}
+
+.sidebar ul li a {
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a:hover {
+    color: #29ac6c;
+    background-color: #fff;
+}
+
+.sidebar ul li a i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* ========== MAIN /index.html ========== */
+
+.main {
+    position: absolute;
+    top: 60PX;
+    width: calc(100% - 260px);
+    left: 260px;
+    min-height: calc(100vh - 60px);
+    background: #f5f5f5;
+}
+
+.cards {
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.cards .card {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px 0 rgba(0, 0, 0, 0.08);
+}
+
+.number {
+    font-size: 35px;
+    font-weight: 500;
+    color: #29ac6c;
+}
+
+.card-name {
+    color: #888;
+    font-weight: 600;
+}
+
+.icon-box i {
+    font-size: 40px;
+    color: #29ac6c;
+}
+
+/* ========== TABLES ========== */
+
+.tables {
+    display: grid;
+    grid-gap: 40px;
+    width: 100%;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 20px;
+    background-color: #fff; 
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.table thead {
+    background: #29ac6c;
+}
+
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+}
+
+.table td:last-child {
+    vertical-align: middle;
+    text-align: left;
+}
+
+.table td:last-child a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #29ac6c;
+    border: 1px solid #29ac6c;
+    border-radius: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.table td:last-child a:hover {
+    color: #fff;
+    background-color: #23754e;
+    border-color: #23754e;
+    text-decoration: none;
+}
+
+.table thead th {
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    padding: 10px 12px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.total-label {
+    font-weight: bold;
+    text-align: right;
+}
+
+.total-amount {
+    font-weight: bold;
+    text-align: right;
+    color: #000;
+}
+
+
+/* ========== MAIN / bilan_transaction.html ========== */
+
+.filter {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.radio-group input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.radio-group input[type="radio"]:checked {
+    border-color: #007bff;
+}
+
+#jour-input,
+#periode-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#jour-input label,
+#periode-inputs label {
+    font-size: 16px;
+    color: #333;
+}
+
+#jour-input input,
+#periode-inputs input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#transaction_type {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.buttons button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buttons .cancel {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.buttons .cancel:hover {
+    background-color: #d32f2f;
+}
+
+.buttons button[type="submit"] {
+    background-color: #29ac6c;
+    color: #fff;
+}
+
+.buttons button[type="submit"]:hover {
+    background-color: #23754e;
+}
+
+/* ========== Landing Page ========== */
+
+.Landing_header {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.2)), #29ac6c;
+    background-size: cover;
+}
+
+.Landing_header nav {
+    width: 100%;
+    height: 100Px;
+    padding: 0 30px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Landing_header nav .logo {
+    font-size: 2em;
+    letter-spacing: 2px;
+}
+
+.Landing_header nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #024e29;
+    border: 1px solid #024e29;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.Landing_header nav a:hover {
+    background-color: #f7f7f7;
+    color: #024e29;
+    border: 2px solid #024e29;
+}
+
+.Landing_header section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.Landing_header section span {
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-size: 50px;
+}
+
+.Landing_header section a {
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #024e29;
+    border: 1px solid #024e29;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.Landing_header section a:hover {
+    background-color: #f7f7f7;
+    color: #024e29;
+    border: 2px solid #024e29;
+}
+
+/* ========== DETAIL ========== */
+
+.main .block-detail {
+    display: flex;
+    justify-content: center;
+}
+
+.main .block-content {
+    display: flex;
+    justify-content: center;
+}
+
+.content-detail {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: left;
+ }
+
+ .content-detail h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40; 
+}
+
+.content-detail p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #495057;
+}
+
+.content-detail a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #29ac6c;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.content-detail a:hover {
+    background-color: #23754e;
+}
+
+.content-detail .btn-print {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.content-detail .btn-print:hover {
+    background-color: #0056b3;
+}
+
+/* ========== Transaction forms ========== */
+
+.head-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.head-form h1 {
+    color: #29ac6c;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.head-form .error-message {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.form-transactions {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-transactions form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.form-transactions label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.form-transactions input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-transactions input[type="number"],
+.form-transactions select,
+.form-transactions textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-transactions textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/*================ Styles pour le bouton "Imprimer" ================*/
+.print {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.print-button {
+    background-color: #29ac6c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0 0 30px 20px;
+    justify-self: flex-end;
+    cursor: pointer;
+}
+
+.print-button:hover {
+    background-color: #23754e;
+}
+
+@media print {
+/* Styles spécifiques à l'impression */
+    .print-button {
+        display: none; /* Cacher le bouton "Imprimer" à l'impression */
+    }
+
+    table {
+        page-break-inside: auto;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    td {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}

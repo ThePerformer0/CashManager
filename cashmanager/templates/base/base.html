@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link class="link_css" rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>{% block title %}CashManager{% endblock %}</title>
+  <style>
+    /* Styles pour le conteneur du formulaire */
+    .form-justificatif {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: #f5f5f5;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-select, .form-control {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .btn {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+    }
+
+    .btn-cancel {
+      background-color: #f44336;
+      color: white;
+      padding: 10px 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      margin-right: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-submit {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #23754e;
+    }
+
+    .btn-cancel:hover {
+      background-color: #df2d21;
+    }
+
+    .link-back {
+      margin-top: 10px;
+    }
+
+    .link-back a {
+      justify-self: left;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .link-back a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<script>
+  function toggleDateInputs() {
+    const jourfieldWrapper = document.getElementById('jour-input');
+    const periodeInputsWrapper = document.getElementById('periode-inputs');
+    const journéeRadio = document.getElementById('journée');
+
+    if (journéeRadio.checked) {
+      jourfieldWrapper.style.display = 'block';
+      periodeInputsWrapper.style.display = 'none';
+    } else {
+      jourfieldWrapper.style.display = 'none';
+      periodeInputsWrapper.style.display = 'block';
+    }
+  }
+
+  function printTables1() {
+  var printWindow = window.open('', 'Print', 'height=400,width=600');
+  printWindow.document.write('<html><head><title>Impression des tableaux</title>');
+
+  // Inclure les feuilles de style CSS
+  var styles = '';
+  var links = document.getElementsByClassName('link_css');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].rel.toLowerCase() === 'stylesheet') {
+      styles += '<link rel="stylesheet" href="' + links[i].href + '">';
+    }
+  }
+  printWindow.document.write(styles);
+
+  printWindow.document.write('</head><body>');
+  printWindow.document.write(document.querySelector('.transaction-tables1').innerHTML);
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+  printWindow.close();
+}
+
+function printTables() {
+  var printWindow = window.open('', 'Print', 'height=400,width=600');
+  printWindow.document.write('<html><head><title>Impression des tableaux</title>');
+
+  // Inclure les feuilles de style CSS
+  var styles = '';
+  var links = document.getElementsByClassName('link_css');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].rel.toLowerCase() === 'stylesheet') {
+      styles += '<link rel="stylesheet" href="' + links[i].href + '">';
+    }
+  }
+  printWindow.document.write(styles);
+
+  printWindow.document.write('</head><body>');
+  printWindow.document.write(document.querySelector('.transaction-tables').innerHTML);
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+  printWindow.close();
+}
+</script>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <div class="logo">
+        <h2>CashManager.</h2>
+        
+        {% if user.is_authenticated %}
+        <h3>Bonjour {{ user.username }} !!!</h3>
+        {% endif %}
+      </div>
+      <div class="user">
+        <img src="{% static 'img/user.png' %}" alt="">
+      </div>
+    </div>
+    <div class="sidebar">
+      <ul>
+        <li>
+          <a href="{% url 'cashmanager:index' %}">
+            <i class="fas fa-th-large"></i>
+            <div>Acceuil</div>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'cashmanager:creer_retrait' %}">
+            <i class="fa fa-envelope-open" aria-hidden="true"></i>
+            <div>Bon de caisse</div>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'cashmanager:approvisionner_caisse' %}">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <div>Approvisionnement</div>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'cashmanager:ajouter_employe' %}">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <div>Ajouter un employé</div>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'cashmanager:bilan_transaction' %}">
+            <i class="fa fa-table" aria-hidden="true"></i>
+            <div>Générer des bilans</div>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'cashmanager:ajouter_justificatif' %}">
+            <i class="fa fa-file" aria-hidden="true"></i>
+            <div>Ajouter un justificatif</div>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'cashmanager:deconnection' %}">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <div>Se Deconnecter</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    {% block template %}
+    {% endblock %}
+  </div>
+  <script src="{% static 'JS/main.js' %}"></script>
+</body>
+</html>

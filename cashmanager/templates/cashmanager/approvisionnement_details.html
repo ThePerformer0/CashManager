@@ -1,0 +1,19 @@
+{% extends '../base/base.html' %}
+{% block title %}CashManager - Détails - Transactions{% endblock %}
+
+{% block template %}
+    <div class="main"><br><br>
+        <div class="block-detail">
+            <div class="block-content">
+                <div class="content-detail">
+                    <h1>Détails du bon de caisse n°{{ approvisionnement.numero }}</h1>
+                    <p>Date : {{ approvisionnement.date }}</p>
+                    <p>Effetuer par : {{ approvisionnement.make_by }}</p>
+                    <p>Montant : {{ approvisionnement.montant }} FCFA</p>
+                    <p>Motif : {{ approvisionnement.motif }}</p>
+                    <a href="{% url 'cashmanager:index' %}">Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

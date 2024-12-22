@@ -1,0 +1,21 @@
+{% extends '../base/base.html' %}
+{% block title %}CashManager - Détails - Transactions{% endblock %}
+
+{% block template %}
+{% load humanize %}
+    <div class="main"><br><br>
+        <div class="block-detail">
+            <div class="block-content">
+                <div class="content-detail">
+                    <h1>Détails du bon de caisse n°{{ retrait.numero }}</h1>
+                    <p>Date : {{ retrait.date }}</p>
+                    <p>Bénéficiaire : {{ retrait.beneficiaire }}</p>
+                    <p>Montant : {{ retrait.montant |intcomma }} FCFA</p>
+                    <p>Motif : {{ retrait.motif }}</p>
+                    <a href="{% url 'cashmanager:index' %}">Retour</a>
+                    <a href="{% url 'cashmanager:print_retrait' retrait.id %}" class="btn-print">Imprimer</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+{% endblock %}

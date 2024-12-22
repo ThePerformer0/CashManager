@@ -1,0 +1,41 @@
+{% extends '../base/base.html' %}
+{% block title %}CashManager - Retrait{% endblock %}
+
+{% block template %}
+{% load humanize %}
+
+<div class="main">
+  <div class="head-form">
+    <h1>Retrait de caisse</h1>
+
+    {% if error_message %}
+    <div class="error-message">{{ error_message }}</div>
+    {% endif %}
+  </div>
+
+  <div class="form-transactions">
+    <form method="post">
+      {% csrf_token %}
+        <label for="beneficiaire">Bénéficiaire :</label>
+        <select id="beneficiaire" name="beneficiaire" required>
+          <option value="">Sélectionnez un bénéficiaire</option>
+          {% for employe in employes %}
+          <option value="{{ employe.id }}">{{ employe.nom }}</option>
+          {% endfor %}
+        </select>
+  
+        <label for="montant">Montant :</label>
+        <input type="number" id="montant" name="montant" required>
+  
+        <label for="motif">Motif :</label>
+        <textarea id="motif" name="motif" required></textarea>
+  
+        <div class="buttons">
+          <button type="reset" class="cancel">Annuler</button>
+          <button type="submit">Effectuer le retrait</button>
+        </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

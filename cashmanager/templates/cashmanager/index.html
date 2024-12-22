@@ -1,0 +1,92 @@
+{% extends '../base/base.html' %}
+{% block title %}CashManager - Homepage{% endblock %}
+
+{% block template %}
+{% load humanize %}
+<div class="main">
+  <div class="cards">
+    <div class="card">
+      <div class="card-content">
+        <div class="number">{{ today_retrait_count }} today</div>
+        <div class="card-name">Retrait</div>
+      </div>
+      <div class="icon-box">
+        <i class="fa fa-envelope-open" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="number">{{ today_add_count }} today</div>
+        <div class="card-name">Approvisonnement</div>
+      </div>
+      <div class="icon-box">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="number">{{ user_caisse_solde|intcomma }} FCFA</div>
+        <div class="card-name">{{ user_caisse_name }}</div>
+      </div>
+      <div class="icon-box">
+        <i class="fa fa-archive" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+  <div class="tables">
+    <div class="table-box">
+      <h2>Retrait de la journée</h2>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Date</th>
+            <th>Bénéficiaire</th>
+            <th>Montant</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for retrait in today_retrait_list %}
+          <tr>
+            <td>{{ retrait.numero }}</td>
+            <td>{{ retrait.date |date:"d-m-Y" }}</td>
+            <td>{{ retrait.beneficiaire }}</td>
+            <td>{{ retrait.montant|intcomma }} FCFA</td>
+            <td><a href="{% url 'cashmanager:get_retrait_details' retrait.id %}" class="retrait-details">Voir</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br>
+      <br>
+      <br>
+      
+      <h2>Approvisionnement de la journée</h2>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Date</th>
+            <th>Responsable</th>
+            <th>Montant</th>
+            <th>Détails</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for approvisionnement in today_approvisionnement_list %}
+          <tr>
+            <td>{{ approvisionnement.numero }}</td>
+            <td>{{ approvisionnement.date|date:"d-m-Y" }}</td>
+            <td>{{ approvisionnement.make_by.username }} - {{ approvisionnement.make_by.role }}</td>
+            <td>{{ approvisionnement.montant|intcomma }} FCFA</td>
+            <td><a href="{% url 'cashmanager:get_approvisionnement_details' approvisionnement.id %}" class="approvisionnement-details">Voir</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
